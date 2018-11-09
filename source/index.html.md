@@ -1,10 +1,9 @@
 ---
-title: API Reference
+title: SmartKarrot API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
-  - shell
-  - ruby
-  - python
+  - swift
+  - java
   - javascript
 
 toc_footers:
@@ -19,7 +18,7 @@ search: true
 
 # Introduction
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+Welcome to the SmartKarrot API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
 
 We have language bindings in Shell, Ruby, Python, and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
 
@@ -65,9 +64,9 @@ Kittn expects for the API key to be included in all API requests to the server i
 You must replace <code>meowmeowmeow</code> with your personal API key.
 </aside>
 
-# Kittens
+# Usage Analytics (Core SDK)
 
-## Get All Kittens
+## Log App Events
 
 ```ruby
 require 'kittn'
@@ -116,18 +115,18 @@ let kittens = api.kittens.get();
 ]
 ```
 
-This endpoint retrieves all kittens.
+This endpoint logs a set of app events.
 
-### HTTP Request
+### HTTPS Request
 
-`GET http://example.com/api/kittens`
+`POST https://api.smartkarrot.com/v1/logEvents`
 
 ### Query Parameters
 
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
+Parameter | Type    | Required | Description
+--------- | ------- | -------- | -------------------------
+eventId   | string  | required | A UUID string. Preferably a version 4 UUID. Example: f30ccccf-54a8-49bf-b3e4-6eee274810ab.
+eventName | string  | required | The name of the event. 
 
 <aside class="success">
 Remember — a happy kitten is an authenticated kitten!
