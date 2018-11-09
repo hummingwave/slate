@@ -224,6 +224,12 @@
             <a href="#introduction" class="toc-h1 toc-link" data-title="Introduction">Introduction</a>
           </li>
           <li>
+            <a href="#sandbox" class="toc-h1 toc-link" data-title="Sandbox">Sandbox</a>
+          </li>
+          <li>
+            <a href="#data-types" class="toc-h1 toc-link" data-title="Data Types">Data Types</a>
+          </li>
+          <li>
             <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
           </li>
           <li>
@@ -241,6 +247,33 @@
               </ul>
           </li>
           <li>
+            <a href="#referral" class="toc-h1 toc-link" data-title="Referral">Referral</a>
+          </li>
+          <li>
+            <a href="#segmentation" class="toc-h1 toc-link" data-title="Segmentation">Segmentation</a>
+          </li>
+          <li>
+            <a href="#analytics" class="toc-h1 toc-link" data-title="Analytics">Analytics</a>
+          </li>
+          <li>
+            <a href="#rich-push" class="toc-h1 toc-link" data-title="Rich Push">Rich Push</a>
+          </li>
+          <li>
+            <a href="#geofencing" class="toc-h1 toc-link" data-title="Geofencing">Geofencing</a>
+          </li>
+          <li>
+            <a href="#gamification" class="toc-h1 toc-link" data-title="Gamification">Gamification</a>
+          </li>
+          <li>
+            <a href="#journey-design" class="toc-h1 toc-link" data-title="Journey Design">Journey Design</a>
+          </li>
+          <li>
+            <a href="#donation" class="toc-h1 toc-link" data-title="Donation">Donation</a>
+          </li>
+          <li>
+            <a href="#wallets" class="toc-h1 toc-link" data-title="Wallets">Wallets</a>
+          </li>
+          <li>
             <a href="#errors" class="toc-h1 toc-link" data-title="Errors">Errors</a>
           </li>
       </ul>
@@ -253,11 +286,53 @@
       <div class="dark-box"></div>
       <div class="content">
         <h1 id='introduction'>Introduction</h1>
-<p>Welcome to the SmartKarrot API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.</p>
+<p>Welcome to the SmartKarrot API! SmartKarrot offers private REST APIs for its SaaS services.</p>
 
-<p>We have language bindings in Shell, Ruby, Python, and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
+<p>We have language bindings in Swift, Java, and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
+<h1 id='sandbox'>Sandbox</h1>
+<p>SmartKarrot&#39;s sandbox site is an instance of the SmartKarrot SaaS platform. It offers Gemini Exchange that offers full exchange functionality using test funds.</p>
 
-<p>This example API documentation page was created with <a href="https://github.com/lord/slate">Slate</a>. Feel free to edit it and use it as a base for your own API&#39;s documentation.</p>
+<p>Gemini has an automated system that makes trades on the exchange to simulate normal exchange activity
+all funds are for testing purposes only, no deposits or withdrawals
+hourly auctions</p>
+<h1 id='data-types'>Data Types</h1>
+<p>The SDK uses the following data types.</p>
+
+<table><thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>string</td>
+<td>A simple quoted string, following standard JSON rules; see the <a href="http://json.org/">JSON spec</a> for details.</td>
+</tr>
+<tr>
+<td>integer</td>
+<td>A whole number, transmitted as a JSON number.</td>
+</tr>
+<tr>
+<td>boolean</td>
+<td>A JSON boolean, the literal string true or false.</td>
+</tr>
+<tr>
+<td>array</td>
+<td>A JSON array. Each element contains a payload that will be described.</td>
+</tr>
+<tr>
+<td>timestamp</td>
+<td>Time in UTC stored in the <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO 8601</a> format with millisecond precision. (Example: 2018-09-29T09:58:44.635Z)</td>
+</tr>
+<tr>
+<td>uuid</td>
+<td>A UUID string. Preferably a version 4 UUID. Example: <code>f30ccccf-54a8-49bf-b3e4-6eee274810ab</code>.</td>
+</tr>
+<tr>
+<td>decimal</td>
+<td>A decimal value, encoded in a JSON string. The contents will be a series of digits, followed by an optional decimal point and additional digits.</td>
+</tr>
+</tbody></table>
 <h1 id='authentication'>Authentication</h1>
 <blockquote>
 <p>To authorize, use this code:</p>
@@ -337,15 +412,51 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
 </thead><tbody>
 <tr>
 <td>eventId</td>
-<td>string</td>
+<td>uuid</td>
 <td>required</td>
-<td>A UUID string. Preferably a version 4 UUID. Example: f30ccccf-54a8-49bf-b3e4-6eee274810ab.</td>
+<td>A unique identifier for the event.</td>
 </tr>
 <tr>
 <td>eventName</td>
 <td>string</td>
 <td>required</td>
-<td>The name of the event.</td>
+<td>The name of the event. Example: &quot;Purchased Product&quot;. Event names can be up to 40 characters.</td>
+</tr>
+<tr>
+<td>loggedAtTime</td>
+<td>timestamp</td>
+<td>required</td>
+<td>The time at which the event was generated.</td>
+</tr>
+<tr>
+<td>attributes</td>
+<td>node</td>
+<td>optional</td>
+<td>Attributes of the event. An event can have up to ten attributes.</td>
+</tr>
+</tbody></table>
+
+<p>An attribute of the event is a key value pair.</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>key</td>
+<td>string</td>
+<td>required</td>
+<td>The attribute name. Example: &quot;SKU&quot;. Attribute names can be up to 40 characters.</td>
+</tr>
+<tr>
+<td>value</td>
+<td>multiple</td>
+<td>required</td>
+<td>The value of the attribute. Example: &quot;UA064-8365&quot;. Values can be of type string, integer, decimal or date. Values of type string can be up to 40 characters long.</td>
 </tr>
 </tbody></table>
 
@@ -434,7 +545,7 @@ Remember — a happy kitten is an authenticated kitten!
 <td>The ID of the kitten to delete</td>
 </tr>
 </tbody></table>
-<h1 id='errors'>Errors</h1>
+<h1 id='referral'>Referral</h1><h1 id='segmentation'>Segmentation</h1><h1 id='analytics'>Analytics</h1><h1 id='rich-push'>Rich Push</h1><h1 id='geofencing'>Geofencing</h1><h1 id='gamification'>Gamification</h1><h1 id='journey-design'>Journey Design</h1><h1 id='donation'>Donation</h1><h1 id='wallets'>Wallets</h1><h1 id='errors'>Errors</h1>
 <aside class="notice">
 This error section is stored in a separate file in <code>includes/_errors.md</code>. Slate allows you to optionally separate out your docs into many files...just save them to the <code>includes</code> folder and add them to the top of your <code>index.md</code>'s frontmatter. Files are included in the order listed.
 </aside>
