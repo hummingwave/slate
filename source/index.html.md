@@ -8,6 +8,8 @@ language_tabs: # must be one of https://git.io/vQNgJ
 
 toc_footers:
   - <a href='#'>Sign Up for a Developer Key</a>
+  - © 2018 SmartKarrot, Inc.
+  - All rights reserved.
 
 includes:
   - errors
